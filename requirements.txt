@@ -2,3 +2,6 @@ discord.py>=2.3,<3
 aiohttp
 python-dotenv>=1.0
 yt-dlp
+PyNaCl
+davey
+wavelink==3.5.2
