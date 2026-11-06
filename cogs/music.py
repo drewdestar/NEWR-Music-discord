@@ -516,6 +516,10 @@ class Music(commands.Cog):
         if not player.current.is_seekable:
             await interaction.response.send_message(embed=ui.err("⏩ Not Seekable", "This track cannot be seeked."), ephemeral=True)
             return
+        length = player.current.length or 0
+        if seconds < 0 or seconds * 1000 > length:
+            await interaction.response.send_message(embed=ui.err("⏩ Invalid Position", f"Seek position must be between 0 and {length // 1000} seconds."), ephemeral=True)
+            return
         await player.seek(seconds * 1000)
         await interaction.response.send_message(embed=ui.ok("⏩ Seeked", f"Seeked to {_fmt(seconds * 1000)}."))
 
